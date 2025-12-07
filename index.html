@@ -7,9 +7,9 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
+      font-family: 'JetBrains Mono', monospace;
+      background: #1e1e1e;
+      color: #d4d4d4;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,84 +17,121 @@
       padding: 0 20px;
     }
     .card {
-      background: #fff;
-      border-radius: 16px;
-      max-width: 420px;
+      background: #0f0f0f;
+      border-radius: 14px;
+      max-width: 480px;
       width: 100%;
       padding: 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: #ddd;
-      margin: 0 auto 20px;
-      background-size: cover;
-      background-position: center;
-    }
-    h1 {
-      font-size: 28px;
-      margin: 0 0 8px;
-    }
-    h2 {
-      font-size: 16px;
-      font-weight: normal;
-      margin: 0 0 16px;
-      color: #666;
-    }
-    .description {
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      border: 1px solid #2a2a2a;
       font-size: 15px;
-      margin-bottom: 24px;
-      line-height: 1.5;
     }
-    .links a {
-      display: block;
-      text-decoration: none;
-      padding: 12px 16px;
-      margin: 8px 0;
-      border-radius: 10px;
-      background: #1a73e8;
-      color: #fff;
-      font-size: 16px;
-      transition: 0.2s;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      color: #c5c5c5;
+      font-weight: bold;
     }
-    .links a:hover {
-      background: #155bc0;
+    .circles {
+      display: flex;
+      gap: 8px;
     }
-    .contacts {
-      margin-top: 28px;
-      font-size: 14px;
-      color: #555;
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
     }
-    .contacts a {
-      color: #1a73e8;
-      text-decoration: none;
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2d; }
+    .green { background: #27c93f; }
+
+    .json-line {
+      margin: 6px 0;
+      white-space: pre;
+    }
+    .key { color: #9cdcfe; }
+    .value-string { color: #ce9178; }
+
+    .avatar {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background-image: url('https://lh3.googleusercontent.com/gg/AIJ2gl_gTntTYV9fbDVLwcMjf6xbCymZQZm64STYaMUl9_s0xXuKeGxNzU9g5qKP1ShAb45ZQlkzUB7H6z7wFoMnBDHjunYxYxMEBWVTYFEaKjKgKMrVGrRxmCuuaDqh2klQSzsJLDL5MThNQegx855kGij8bWi7UQjh0BYOAhsB7eKWxwH8t64n=s1024-rj');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      border: 3px solid #2a2a2a;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background: #ce9178;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .card:hover {
+      box-shadow: 0 0 70px rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+      transition: 0.3s ease;
+    }
+
+    .card {
+      transition: 0.3s ease;
+    }
+
+    .holo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(255,0,150,0.25), rgba(0,200,255,0.25), rgba(255,255,0,0.25));
+      mix-blend-mode: overlay;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .holo {
+      opacity: 0.35;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="avatar" style="background-image: url('avatar.jpg');"></div>
-    <h1>Ваше Имя</h1>
-    <h2>Должность / Специализация</h2>
-
-    <div class="description">
-      Краткое описание: чем вы занимаетесь, ваше ценностное предложение или компетенции.
+<div class="card" style="position: relative; overflow: hidden;">
+  <div class="holo"></div>
+  <div class="header">
+    <div class="circles">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="circle green"></div>
     </div>
-
-    <div class="links">
-      <a href="#" target="_blank">Telegram</a>
-      <a href="#" target="_blank">WhatsApp</a>
-      <a href="#" target="_blank">Портфолио</a>
-      <a href="#" target="_blank">Соцсети</a>
-    </div>
-
-    <div class="contacts">
-      <p>Телефон: <a href="tel:+79990000000">+7 999 000‑00‑00</a></p>
-      <p>Email: <a href="mailto:email@example.com">email@example.com</a></p>
-    </div>
+    <span>Business_card.json</span>
+    <span></span>
   </div>
+
+  <div class="avatar"></div>
+
+  <div class="json-line">{</div>
+  <div class="json-line">  <span class="key">"name"</span>: <span class="value-string">"Агафонов Андрей"</span>,</div>
+  <div class="json-line">  <span class="key">"title"</span>: <span class="value-string">"Web Developer / Laravel Backend"</span>,</div>
+  <div class="json-line">  <span class="key">"email"</span>: <span class="value-string"><a href="mailto:andrey.aagf@gmail.com" style="color:#ce9178;text-decoration:none;">"andrey.aagf@gmail.com"</a></span>,</div>
+  <div class="json-line">  <span class="key">"phone"</span>: <span class="value-string"><a href="tel:+77059910985" style="color:#ce9178;text-decoration:none;">"+77059910985"</a></span>,</div>
+  <div class="json-line">  <span class="key">"socials"</span>: <span class="value-string">[ <a href="#" style="color:#ce9178;text-decoration:none;">"Instagram"</a>, <a href="#" style="color:#ce9178;text-decoration:none;">"WhatsApp"</a> ]</span></div>
+  <div class="json-line">}</div>
+</div>
 </body>
 </html>
